@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Soccer News</string>
+    <string name="title_news">News</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="txt_title">Flamengo ganha campeonato</string>
+    <string name="txt_description">o esporte clube flamengo feminino levou o brasileirao 2022</string>
+    <string name="btn_txt">Abrir noticia</string>
+    <string name="favorite_icon">favorite icon</string>
+    <string name="share_icon">share icon</string>
+    <string name="thumbnail">Thumbnail</string>
+</resources>
