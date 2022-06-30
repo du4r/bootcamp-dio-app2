@@ -1,12 +1,32 @@
 package com.du4r.soccernews.ui.domains;
 
-public class News {
-    private String Title;
-    private String Description;
+import com.google.gson.annotations.SerializedName;
 
-    public News(String title, String description) {
+public class News {
+
+    @SerializedName("title")
+    public String Title;
+    @SerializedName("description")
+    public String Description;
+    @SerializedName("image")
+    public String Image;
+    @SerializedName("link")
+    public String Link;
+
+    public void setTitle(String title) {
         Title = title;
+    }
+
+    public void setDescription(String description) {
         Description = description;
+    }
+
+    public void setImage(String image) {
+        Image = image;
+    }
+
+    public void setLink(String link) {
+        this.Link = link;
     }
 
     public String getTitle() {
@@ -17,12 +37,13 @@ public class News {
         return Description;
     }
 
-    public void setTitle(String title) {
-        Title = title;
+    public String getImage() {
+        return Image;
     }
 
-    public void setDescription(String description) {
-        Description = description;
+    public String getLink() {
+        return Link;
     }
+
 }
 

@@ -17,7 +17,7 @@ import com.du4r.soccernews.ui.adapters.NewsAdapter;
 
 public class NewsFragment extends Fragment {
 
-    private @NonNull FragmentNewsBinding binding;
+    private FragmentNewsBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         NewsViewModel newsViewModel = new ViewModelProvider(this).get(NewsViewModel.class);
@@ -27,7 +27,9 @@ public class NewsFragment extends Fragment {
 
         binding.rvNews.setLayoutManager( new LinearLayoutManager(getContext()));
         newsViewModel.getNews().observe(getViewLifecycleOwner(), news -> {
-            binding.rvNews.setAdapter(new NewsAdapter(news));
+            binding.rvNews.setAdapter(new NewsAdapter(news, view ->{
+
+            }));
         });
         return root;
     }

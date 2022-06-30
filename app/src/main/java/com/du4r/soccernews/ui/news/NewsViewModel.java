@@ -1,29 +1,58 @@
 package com.du4r.soccernews.ui.news;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.du4r.soccernews.ui.data.SoccerNewsApi;
 import com.du4r.soccernews.ui.domains.News;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class NewsViewModel extends ViewModel {
 
-    private final MutableLiveData<List<News>> mNews;
+    private final MutableLiveData<List<News>> mNews = new MutableLiveData<>();
+    private final SoccerNewsApi api;
 
     public NewsViewModel() {
-        mNews = new MutableLiveData<>();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://du4r.github.io/mockings/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-        List<News> news = new ArrayList<>();
-        news.add(new News("vitoria perde","mais uma vez o ecv perdeu uma partida..."));
-        news.add(new News("vitoria perde de novo","mais uma vez o ecv perdeu uma partida..."));
-        news.add(new News("vitoria perde na serie c","mais uma vez o ecv perdeu uma partida..."));
+        api = retrofit.create(SoccerNewsApi.class);
+        this.findNewsFromApi();
+    }
 
-        this.mNews.setValue(news);
+
+    private void findNewsFromApi() {
+        api.getNews().enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<News>> call,@NonNull Response<List<News>> response) {
+                if(response.isSuccessful() ){
+                    mNews.setValue(response.body());
+                } else{
+                    //TODO: PENSAR EM UMA ESTRATEGIA DE TRATAMENTO DE ERROS
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<News>> call, Throwable t) {
+                //TODO: PENSAR EM UMA ESTRATEGIA DE TRATAMENTO DE ERROs
+            }
+        });
     }
 
     public MutableLiveData<List<News>> getNews() {
         return mNews;
     }
+
 }
