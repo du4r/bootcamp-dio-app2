@@ -1,14 +1,16 @@
 package com.du4r.soccernews.ui.news;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.room.Room;
 
-import com.du4r.soccernews.ui.data.SoccerNewsApi;
+import com.du4r.soccernews.ui.data.remote.SoccerNewsApi;
+import com.du4r.soccernews.ui.data.remote.local.AppDatabase;
 import com.du4r.soccernews.ui.domains.News;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,6 +31,8 @@ public class NewsViewModel extends ViewModel {
                 .build();
 
         api = retrofit.create(SoccerNewsApi.class);
+
+
         this.findNewsFromApi();
     }
 

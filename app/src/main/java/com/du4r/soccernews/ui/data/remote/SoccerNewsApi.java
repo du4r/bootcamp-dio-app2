@@ -1,4 +1,4 @@
-package com.du4r.soccernews.ui.data;
+package com.du4r.soccernews.ui.data.remote;
 
 import com.du4r.soccernews.ui.domains.News;
 import java.util.List;

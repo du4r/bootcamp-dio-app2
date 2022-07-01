@@ -1,8 +1,14 @@
 package com.du4r.soccernews.ui.domains;
 
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import com.google.gson.annotations.SerializedName;
 
+@Entity
 public class News {
+    @PrimaryKey
+    public int Id;
 
     @SerializedName("title")
     public String Title;
@@ -12,38 +18,8 @@ public class News {
     public String Image;
     @SerializedName("link")
     public String Link;
+    public Boolean Favorite = false;
 
-    public void setTitle(String title) {
-        Title = title;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }
-
-    public void setImage(String image) {
-        Image = image;
-    }
-
-    public void setLink(String link) {
-        this.Link = link;
-    }
-
-    public String getTitle() {
-        return Title;
-    }
-
-    public String getDescription() {
-        return Description;
-    }
-
-    public String getImage() {
-        return Image;
-    }
-
-    public String getLink() {
-        return Link;
-    }
 
 }
 
